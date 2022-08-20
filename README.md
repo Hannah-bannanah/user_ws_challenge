@@ -5,7 +5,7 @@ A simple REST API for to administer user accounts. The application connects to a
 
 ## Execution instructions
 In order to execute the application, MySQL server 8 must be running on localhost, port 3306
-1. Run the sql script in the file dbScript.txt to create a sample database (with no data)
+1. Run the sql script in the file dbScript.sql to create a sample database (with no data)
 2. Open the project in the folder challenge_jmp 
 3. Execute the application in the project
 4. The web server will be listening on port 8085
