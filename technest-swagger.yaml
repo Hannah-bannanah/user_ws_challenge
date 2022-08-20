@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info: 
+  title: Technest challenge
+  description: API specification for the technest challenge
+  version: 1.0.0
+servers: 
+  - url: http://localhost:8085
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: the user account's userId
+        firstName:
+          type: string
+          description: the user's first name
+        lastName1:
+          type: string
+          description: the user's first surname
+        lastName2:
+          type: string
+          description: the user's second surname
+        email:
+          type: string
+          description: the user's email
+        password:
+          type: string
+          description: the user's password
+      required:
+        - firstName
+        - lastName1
+        - email
+        - password
+paths:
+  /users:
+    get:
+      summary:  Get a list of all user accounts
+      responses:
+        200:
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      requestBody:
+        description: A user object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: User successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        409:
+          description: A user with such email already exists
+        400:
+          description: Bad request (incomplete or wrong data)
+  /users/{userId}:
+    get:
+      summary: Get a user with a given userId
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+          description: The user account's userId
+      responses:
+        200: 
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: User not found
+    put:
+      summary: Update a user entry. The entire entry will be replace with the information in the request body
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+          description: The user account's userId
+      requestBody:
+        description: A user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: User successfully updated
+        404:
+          description: User not found
+        400:
+          description: Bad request (incomplete or wrong data)
+    patch:
+      summary: Partially update a user entry. Only the fields included in the request body will be updated
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+          description: The user account's userId
+      requestBody:
+        description: A user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: User successfully updated. Returns the full user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: User not found
+        400:
+          description: Bad request (incomplete or wrong data)
+    delete:
+      summary: Delete a user account
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+          description: The user account's userId
+      responses:
+        200:
+          description: User account successfully deleted. Returns the user account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: User not found
+  /initialize:
+    get:
+      summary:  Delete all records in the DB and reinitialize it with 10 user accounts
+      responses:
+        200:
+          description: Success response. Returns the list of all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
