@@ -3,7 +3,11 @@ package com.technest.challenge_jmp.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -19,7 +23,21 @@ public class UserSecurityConfig {
         http
         	.csrf().disable()
         	.authorizeRequests()
-        	.anyRequest().permitAll(); // no user roles have been defined, 
+        	.anyRequest().authenticated()
+        	.and()
+        	.httpBasic();
         return http.build();
     }
+    
+    @Bean
+    public UserDetailsService users(BCryptPasswordEncoder pwe) {
+
+    	UserDetails admin = User.builder()
+    			.username("admin")  	
+    			.password(pwe.encode("admin123")) 
+    			.roles("ADMIN")
+    			.build();
+    	return new InMemoryUserDetailsManager(admin);
+    }
+
 }

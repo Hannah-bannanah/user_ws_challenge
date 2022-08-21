@@ -9,7 +9,9 @@ In order to execute the application, MySQL server 8 must be running on localhost
 2. Open the project in the folder challenge_jmp 
 3. Execute the application in the project
 4. The web server will be listening on port 8085
-5. The file technest-swagger.yaml provides the API documentation
 
-## Additional notes
-This application does not require authentication, since I understand it falls out of the scope of the challenge. Should authentication be required, please let me know which roles should be implemented. I will update the project and return it to you within 2 business days.  
+## Operation
+* The file technest-swagger.yaml provides the API documentation
+* The basic authentication credentials are:
+    - username: "admin"
+    - password: "admin123"
