@@ -89,6 +89,9 @@ buildNumber.properties
 # End of httpswww.toptal.comdevelopersgitignoreapieclipse,maven
 
 # Additional files added by jmp
-.mvn/*
-mvnw
-mvnw.cmd
+challenge_jmp/.mvn/
+challenge_jmp/mvnw
+challenge_jmp/mvnw.cmd
+challenge_jmp/.idea/
+challenge_jmp/challenge_jmp.iml
+

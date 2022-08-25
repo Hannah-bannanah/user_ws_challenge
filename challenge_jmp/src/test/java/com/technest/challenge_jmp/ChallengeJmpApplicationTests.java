@@ -1,4 +1,4 @@
-package com.technest;
+package com.technest.challenge_jmp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
