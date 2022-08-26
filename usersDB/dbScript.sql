@@ -12,5 +12,7 @@ CREATE TABLE users (
 	UNIQUE (email)
 );
 
-CREATE USER 'utechnest'@'localhost' IDENTIFIED BY 'utechnest';
-GRANT ALL PRIVILEGES ON technest.* TO 'utechnest'@'localhost';
+-- CREATE USER 'utechnest'@'localhost' IDENTIFIED BY 'utechnest';
+-- GRANT ALL PRIVILEGES ON technest.* TO 'utechnest'@'localhost';
+-- CREATE USER 'utechnest'@'%' IDENTIFIED BY 'utechnest';
+-- GRANT ALL PRIVILEGES ON technest.* TO 'utechnest'@'%';
