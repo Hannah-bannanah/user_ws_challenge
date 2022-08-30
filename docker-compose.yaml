@@ -1,0 +1,23 @@
+services:
+  usersdb:
+    image: mysql
+    #command: --init-file /usersdb/dbScript.sql
+    restart: always
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./usersdb/dbScript.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    env_file:
+      - ./usersdb/usersdb.env
+    #container_name: usersdb
+  challenge:
+    build: ./challenge_jmp
+    ports:
+      - '8085:8085'
+    #environment:
+      #SPRING_DATASOURCE_URL: jdbc:mysql://usersdb:3306/technest?serverTimezone=UTC&createDatabaseIfNotExist=true
+    volumes:
+      - ./challenge_jmp/src:/usr/src/challenge/src
+    depends_on:
+      - usersdb
+volumes:
+  dbdata:
