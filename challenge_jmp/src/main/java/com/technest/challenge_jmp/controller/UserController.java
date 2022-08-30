@@ -150,13 +150,13 @@ public class UserController {
      * Clears the database an reinitializes it with 10 user objects
      * @return the list of all users in the DB after the initialization
      */
-    @GetMapping("/initialize")
-    public ResponseEntity<List<User>> initializeDatabase(){
-    	logger.debug("Started method initializeDatabase() in class " + this.getClass().getSimpleName());
+	@GetMapping("/initialize")
+	public ResponseEntity<List<User>> initializerDatabase(){
+		logger.debug("Started method initializeDatabase() in class " + this.getClass().getSimpleName());
 
-    	List<User> users = userService.loadSampleUsers();
-    	
-    	logger.debug("Completed method initializeDatabase() in class " + this.getClass().getSimpleName());
-    	return new ResponseEntity<List<User>>(users, HttpStatus.OK);
-    }
+		List<User> users = userService.loadSampleUsers();
+
+		logger.debug("Completed method initializeDatabase() in class " + this.getClass().getSimpleName());
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	}
 }

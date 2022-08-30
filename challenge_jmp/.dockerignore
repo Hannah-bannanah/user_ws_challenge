@@ -1,0 +1,16 @@
+#ignore intellij
+.idea/
+challenge_jmp.iml
+
+#ignore eclipse
+.settings/
+.classpath
+.project
+
+#ignore maven
+.mvn/
+mvnw
+mvnw.cmd
+
+
+
